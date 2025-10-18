@@ -1,0 +1,45 @@
+import random  # 🎲 To let the computer choose randomly
+
+# 👇 Computer randomly picks -1, 0, or 1
+computer = random.choice([-1, 0, 1])
+
+# 🎮 Player input: s = Snake, w = Water, g = Gun
+youstring = input("Enter your choice (s for Snake, w for Water, g for Gun): ")
+
+# 🧩 Dictionary to convert user’s input into numbers
+# s -> 1, w -> -1, g -> 0
+yourDic = {"s": 1, "w": -1, "g": 0}
+
+# 🔁 Reverse dictionary for displaying names
+reverseDic = {1: "Snake 🐍", -1: "Water 💧", 0: "Gun 🔫"}
+
+# 🎯 Convert user input into corresponding number
+you = yourDic[youstring]
+
+# 🖨️ Show both choices
+print(f"Your choice: {reverseDic[you]}\nComputer choice: {reverseDic[computer]}")
+
+# ⚖️ Compare choices to decide winner
+if computer == you:
+    print("🤝 It's a draw!")
+else:
+    # 🐍 Snake drinks water → Snake wins
+    if computer == 1 and you == -1:
+        print("😢 You lost! Snake drank the water!")
+    elif computer == -1 and you == 1:
+        print("🎉 You win! Snake drank the water!")
+
+    # 💧 Water douses gun → Water wins
+    elif computer == -1 and you == 0:
+        print("😢 You lost! Water doused your gun!")
+    elif computer == 0 and you == -1:
+        print("🎉 You win! Water doused the gun!")
+
+    # 🔫 Gun kills snake → Gun wins
+    elif computer == 0 and you == 1:
+        print("😢 You lost! Gun shot the snake!")
+    elif computer == 1 and you == 0:
+        print("🎉 You win! Gun shot the snake!")
+
+    else:
+        print("⚠️ Something went wrong... please try again!")
